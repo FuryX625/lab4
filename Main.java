@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.Scanner;
 import java.io.IOException;
+import java.util.InputMismatchException;
 
 class WrongStudentName extends Exception { }
 class WrongStudentAge extends Exception { }
@@ -27,17 +28,23 @@ class Main {
                 System.out.println("Błędny wiek studenta!");          
             } catch(WrongStudentBirth e){
                 System.out.println("Błędna data urodzenia!");
-            }
+            } 
+            
         }
     }
 
-    public static int menu() {
+    public static int menu() throws InputMismatchException {
         System.out.println("Wciśnij:");
         System.out.println("1 - aby dodać studenta");
         System.out.println("2 - aby wypisać wszystkich studentów");
         System.out.println("3 - aby wyszukać studenta po imieniu");
         System.out.println("0 - aby wyjść z programu");
-        return scan.nextInt();
+        try{
+         return scan.nextInt();
+        } catch(InputMismatchException e){
+            System.out.println("Błędna opcja");
+        }
+        
     }
 
     public static String ReadName() throws WrongStudentName {
